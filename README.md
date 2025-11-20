@@ -1,27 +1,31 @@
-# 🛡️ AI Phishing URL Detector
+# 🛡️ Enterprise AI Phishing URL Detector
 
 ## 📌 Overview
-This project is a Machine Learning solution designed to detect **Phishing URLs** and protect users from cyber threats. It uses a **Random Forest Classifier** to analyze URL features (such as length, special characters, and domain patterns) to distinguish between legitimate and malicious websites.
+A hybrid cybersecurity tool designed to detect malicious and phishing URLs with high precision. Unlike traditional blacklists, this system combines a **Trusted Whitelist Engine** with a **Random Forest Machine Learning Model** to analyze URL patterns, typosquatting, and entropy.
 
-## 🚀 Features
-- **Smart Feature Extraction:** Analyzes URL length, IP presence, and suspicious characters (`@`, `-`).
-- **Typosquatting Detection:** Detects fake domains like `amazan-security.com` or `g00gle.com`.
-- **Social Engineering Detection:** Identifies sensitive keywords typically used by attackers (e.g., `verify`, `login`, `bonus`).
-- **Synthetic Data Generation:** The model is trained on a generated dataset of **10,000+ URLs** to ensure high accuracy and diversity.
+## 🧠 Key Capabilities
+1.  **Hybrid Protection:** Uses a "Whitelist First" approach for guaranteed safety on trusted sites (e.g., GitHub, Google), followed by AI analysis for unknown links.
+2.  **Smart Typosquatting Detection:** Detects sophisticated impersonation attacks like `gilhub.com` vs `github.com` or `amazan.com`.
+3.  **Generalization Power (Zero-Shot Detection):**
+    * The model successfully identified legitimate educational domains (e.g., `ksu.edu.sa`, `imamu.edu.sa`, `ncc.gov.sa`) as **Safe** without explicitly seeing them in the training data or whitelist.
+    * This proves the AI understands the "pattern" of legitimate governmental and educational infrastructures.
 
 ## 🛠️ Technologies Used
-- **Python** 🐍
-- **Scikit-Learn** (Machine Learning)
-- **Pandas & NumPy** (Data Processing)
+- **Python** (Core Logic)
+- **Scikit-Learn** (Random Forest Classifier)
+- **Feature Engineering** (Levenshtein Distance, Shannon Entropy, Domain Parsing)
 
-## 💻 How to Run
-1. Open the file `Phishing_URL_Detector.ipynb`.
-2. Run the cells sequentially.
-3. In the final cell, enter any URL to test the detection system in real-time.
+## 🚀 How It Works
+The system extracts 9 key features from any URL, including:
+- **Brand Imitation Score:** Checks if the URL looks like a famous brand (e.g., `absber.sa` vs `absher.sa`).
+- **Entropy:** Detects random generated domains (e.g., `xkqz.xyz`).
+- **Structure Analysis:** Differentiates between safe paths (`jarir.com/products/laptop`) and malicious subdomains (`amazon-security.com`).
 
-## 📊 Sample Result
-When testing a malicious link like `http://www.paypal-update-secure.com`:
-> **🚨 RESULT: PHISHING / DANGEROUS WEBSITE!**
+## 📊 Demo Results
+- `https://github.com` 🟢 **Safe** (Whitelist Verified)
+- `http://gilhub.com` 🔴 **Phishing** (Detected Typosquatting)
+- `https://ksu.edu.sa` 🟢 **Safe** (AI Verified Pattern)
+- `http://ww38.gilhub.com` 🔴 **Phishing** (Deep Subdomain Scan)
 
 ---
 *Developed by Ali Alkhamees - Computer Science Student at Majmaah University.*
